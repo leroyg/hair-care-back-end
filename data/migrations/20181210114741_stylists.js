@@ -4,10 +4,10 @@ exports.up = function(knex, Promise){
 
 		table.string('first_name', 128).notNullable()
 		table.string('last_name', 128).notNullable()
-		table.string('phone_number', 10).unique()
+		table.string('phone_number', 15).unique()
 		table.string('address')
 		table.string('city').notNullable()
-		table.string('state').unique().notNullable()
+		table.string('state').notNullable()
 		table.integer('zip', 5).unsigned().unique().notNullable()
 		table.integer('rating').unsigned()
 		table.string('services')
@@ -15,8 +15,6 @@ exports.up = function(knex, Promise){
 		table.integer('average_cost').unsigned()
 		table.string('social_network_link', 128)
 		table.string('social_network_site', 128)
-		table.binary('profile_picture')
-		table.binary('portfolio_picture')
 	})
 }
 
