@@ -1,8 +1,10 @@
 const express = require('express')
 const stylists = require('./routes/stylists.js')
 
+
 const server = express() 
-server.use(express.json())
+
+
 
 server.use('/api/stylists', stylists)
 
