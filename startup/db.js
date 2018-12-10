@@ -1,0 +1,1 @@
+//TODO: Configure the knex database file and export the knexconfig to wire into the database when read to address migrations and seeding after the data schema and structure are built.
