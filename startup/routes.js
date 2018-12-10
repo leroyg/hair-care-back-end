@@ -7,6 +7,8 @@ const auth = require('../routes/auth')
 const error = require('../middleware/error')
 const globalMiddleWare = require('../middleware/globalMiddleware')
 
+
+
 module.exports = function(app){
 	app.use(express.json())
 	app.use('/api/auth', auth)

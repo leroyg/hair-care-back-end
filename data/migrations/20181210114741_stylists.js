@@ -5,6 +5,8 @@ exports.up = function(knex, Promise){
 		table.string('first_name', 128).notNullable()
 		table.string('last_name', 128).notNullable()
 		table.string('phone_number', 10).unique()
+		table.string('work_address')
+		table.integer('work_zip_code', 5).unsigned()
 		table.integer('rating').unsigned()
 		table.string('services_description')
 		table.string('specialty', 128)
