@@ -18,12 +18,22 @@
 
 + [ ] DELETE `/api/stylist/:id` *this endpoint accepts an existing id and responds with [1] (the number of objects deleted) if successful* Stylist access ONLY`
 
+<<<<<<< HEAD
 ## Database & Schema Architecture
 
 + [ ] A normalized data model is established and persists application data
 
 + [ ] The database contains the following tables and schema:
   
+=======
+## Database && Schema Architecture
+
++ [ ] A normalized data model is established and persists application data
+
++ [ ] The database contains a stylists table structured with the following schema:
+  
+        ```markdown
+>>>>>>> development
             1. "stylist"
                 "id": Integer, unsigned, required, primary key, autoincremented
                 "firstname": String, required, 128 char max
@@ -50,6 +60,10 @@
                  "reply": String, 255 char max
                  "like": Boolean, True if "Liked"
 
+<<<<<<< HEAD
+=======
+        ```
+>>>>>>> development
 
 ## Authentication
 
