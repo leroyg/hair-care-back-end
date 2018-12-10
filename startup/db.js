@@ -1,1 +1,6 @@
-//TODO: Configure the knex database file and export the knexconfig to wire into the database when read to address migrations and seeding after the data schema and structure are built.
+const knex = require('knex')
+const knexConfig = require('../knexfile')
+
+const db = knex(knexConfig.development)
+
+module.exports = db
