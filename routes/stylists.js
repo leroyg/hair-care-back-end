@@ -4,7 +4,7 @@ const router = express.Router()
 const { authenticate } = require('../middleware/authentication.js')
 
 router.use(express.json())
-router.get('/', async (req, res) => {
+router.get('/', authenticate, async (req, res) => {
 	try {
 		const stylists = await database('stylists')
 		res.status(200).json(stylists)
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 	}
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', authenticate, async (req, res) => {
 	const { id } = req.params
 	try {
 		const stylist = await database.select('*').from('stylists').where('id', id)
@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
 	}
 })
 
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
 	const { first_name, last_name, city, state, zip } = req.body
 	if (!first_name || !last_name || !city || !state || !zip) {
 		res.status(401).json({ message: 'Please provide all required fields for posting to the database.' })
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
 	}
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticate, async (req, res) => {
 	const { id } = req.params
 	try {
 		const stylistID = await database('stylists').where('id', id).del()
@@ -58,7 +58,7 @@ router.delete('/:id', async (req, res) => {
 	}
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticate, async (req, res) => {
 	const bodyKeys = Object.keys(req.body)
 	if (bodyKeys.length <= 0) {
 		res.status(401).json({ errorMessage: 'Please provide field(s) to update.' })
