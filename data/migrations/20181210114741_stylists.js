@@ -8,7 +8,7 @@ exports.up = function(knex, Promise){
 		table.string('address')
 		table.string('city').notNullable()
 		table.string('state').notNullable()
-		table.integer('zip', 5).unsigned().unique().notNullable()
+		table.integer('zip', 5).unsigned().notNullable()
 		table.integer('rating').unsigned()
 		table.string('services')
 		table.string('specialty', 128)
