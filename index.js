@@ -2,10 +2,12 @@ const morgan = require('morgan')
 const express = require('express')
 const winston = require('./config/winston')
 const stylists = require('./routes/stylists.js')
+const globalMiddleWare = require('./middleware/globalMiddleware.js')
+
 
 const server = express()
-
 server.use(morgan('combined', { stream: winston.stream }))
+server.use(globalMiddleWare)
 
 server.use('/api/stylists', stylists)
 
