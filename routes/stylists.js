@@ -45,4 +45,35 @@ router.post('/', async (req, res) => {
 	}
 })
 
+router.delete('/:id', async (req, res) => {
+	const { id } = req.params
+	try {
+		const stylistID = await database('stylists').where('id', id).del()
+		!id
+			? res.status(404).json({ message: 'The associated ID was not found in the system, please try again' })
+			: res.status(200).json({ success: stylistID })
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({ error: 'An error has occuried while making the request to the database, please try again.' })
+	}
+})
+
+router.put('/:id', async (req, res) => {
+	const bodyKeys = Object.keys(req.body)
+	if (bodyKeys.length <= 0) {
+		res.status(401).json({ errorMessage: 'Please provide field(s) to update.' })
+	}
+	try {
+		const updateCount = await database('stylists').where('id', req.params.id).update(req.body)
+		if (updateCount === 0) {
+			res.status(404).json({ errorMessage: 'That ID does not exist, please try again.' })
+		}
+		else {
+			res.status(200).json(updateCount)
+		}
+	} catch (error) {
+		res.status(500).json({ error: 'An error has occuried while making the update request, please try again.' })
+	}
+})
+
 module.exports = router
