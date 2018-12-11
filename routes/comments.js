@@ -1,10 +1,14 @@
 const express = require('express')
 const database = require('../startup/db.js')
 const router = express.Router()
+const authentication = require('../middleware/authentication.js')
+
+
+
 router.get('/', async (req, res) => {
 	try {
-		const clients = await database('clients')
-		res.status(200).json(clients)
+		const data = await database('comments')
+		res.status(200).json(data)
 	} catch (e) {
 		console.log(e)
 		res
@@ -16,7 +20,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
 	const { id } = req.params
 	try {
-		const clients = await database.select('*').from('clients').where('id', id)
+		const clients = await database.select('*').from('comments').where('stylist_id', id)
 		!id ? res.status(404).json({ message: 'That user does not exist. ' }) : res.status(200).json(clients)
 	} catch (e) {
 		console.log(e)
