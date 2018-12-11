@@ -1,6 +1,8 @@
 const morgan = require('morgan')
 const express = require('express')
 const winston = require('./config/winston')
+const helmet = require('helmet')
+const cors  = require('cors')
 const stylists = require('./routes/stylists.js')
 const globalMiddleWare = require('./middleware/globalMiddleware.js')
 
