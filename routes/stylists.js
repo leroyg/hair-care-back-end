@@ -1,6 +1,7 @@
 const express = require('express')
 const database = require('../startup/db.js')
 const router = express.Router()
+const { authenticate } = require('../middleware/authentication.js')
 
 router.use(express.json())
 router.get('/', async (req, res) => {
@@ -27,5 +28,3 @@ router.get('/:id', async (req, res) => {
 })
 
 module.exports = router
-
-//open branch

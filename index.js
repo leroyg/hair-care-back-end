@@ -1,3 +1,4 @@
+const winston = require('winston')
 const express = require('express')
 const stylists = require('./routes/stylists.js')
 
@@ -11,5 +12,5 @@ server.use('/api/stylists', stylists)
 const port = process.env.PORT || 5000
 
 server.listen(port, () => {
-	console.log(`//============== Server is active on port ${port} =======================//`)
+	winston.info(`//============== Server is active on port ${port} =======================//`)
 })
