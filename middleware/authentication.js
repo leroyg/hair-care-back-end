@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 require('dotenv').config()
 const jwtKey = process.env.JWT_KEY
 

@@ -6,6 +6,7 @@ const helmet = require('helmet')
 const winston = require('./config/winston')
 const stylists = require('./routes/stylists.js')
 const clients = require('./routes/clients.js')
+const users = require('./routes/users.js')
 
 const enableCors = function(req, res, next){
 	res.header('Access-Control-Allow-Origin', '*')
@@ -24,6 +25,7 @@ server.use(helmet())
 
 server.use('/api/stylists', stylists)
 server.use('/api/clients', clients)
+server.use('/api', users)
 
 const port = process.env.PORT || 5000
 
