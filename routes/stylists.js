@@ -27,4 +27,22 @@ router.get('/:id', async (req, res) => {
 	}
 })
 
+router.post('/', async (req, res) => {
+	const { first, last, city, state, zip } = req.body
+	if (!first || !last || !city || !state || !zip) {
+		res.status(401).json({ message: 'Please provide all required fields for posting to the database.' })
+	}
+	else {
+		try {
+			const newStylist = await database('stylists').insert(body)
+			res.status(201).json(newStylist)
+		} catch (error) {
+			console.log(error)
+			res
+				.status(500)
+				.json({ error: 'An error has occurried while making the request with the database.  Please try again.' })
+		}
+	}
+})
+
 module.exports = router
