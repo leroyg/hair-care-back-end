@@ -15,7 +15,7 @@ const enableCors = function(req, res, next){
 
 const corsOptions = {
 	origin               : function(origin, callback){
-		if (origin === 3000 || !origin) {
+		if (origin === process.env.FRONTEND_URL || !origin) {
 			callback(null, true)
 		}
 		else {
