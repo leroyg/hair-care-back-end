@@ -58,4 +58,13 @@ router.delete('/:id', async (req, res) => {
 	}
 })
 
+router.put('/:id', async (req,res) => {
+	try {
+		const updateStylist = await database('stylists').where('id', req.params.id).update(req.body)
+		res.status(200).json(updateStylist)
+	} catch (error) {
+		res.status(500).json({error: "An error has occuried while making the update request, please try again."})
+	}
+})
+
 module.exports = router
