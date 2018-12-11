@@ -1,9 +1,9 @@
 require('dotenv').config()
-const morgan = require('morgan')
+// const morgan = require('morgan')
 const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
-const winston = require('./config/winston')
+// const winston = require('./config/winston')
 const stylists = require('./routes/stylists.js')
 
 const enableCors = function(req, res, next){
@@ -28,7 +28,7 @@ const corsOptions = {
 const server = express()
 server.use(cors())
 server.use(helmet())
-server.use(morgan('combined', { stream: winston.stream }))
+// server.use(morgan('combined', { stream: winston.stream }))
 server.use(enableCors)
 server.use(cors(corsOptions))
 server.use(helmet())
