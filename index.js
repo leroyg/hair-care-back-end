@@ -13,23 +13,23 @@ const enableCors = function(req, res, next){
 	next()
 }
 
-const corsOptions = {
-	origin: function(origin, callback){
-		if (origin === process.env.FRONTEND_URL || !origin) {
-			callback(null, true)
-		}
-		else {
-			callback(new Error('Not allowed by CORS'))
-		}
-	},
-	optionsSuccessStatus : 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+// const corsOptions = {
+// 	origin: function(origin, callback){
+// 		if (origin === process.env.FRONTEND_URL || !origin) {
+// 			callback(null, true)
+// 		}
+// 		else {
+// 			callback(new Error('Not allowed by CORS'))
+// 		}
+// 	},
+// 	optionsSuccessStatus : 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
 
 const server = express()
 server.use(express.json())
 server.use(morgan('combined', { stream: winston.stream }))
 server.use(enableCors)
-server.use(cors(corsOptions))
+server.use(cors())
 server.use(helmet())
 
 server.use('/api/stylists', stylists)
