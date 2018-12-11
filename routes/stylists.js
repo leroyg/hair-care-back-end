@@ -45,4 +45,17 @@ router.post('/', async (req, res) => {
 	}
 })
 
+router.delete('/:id', async (req, res) => {
+	const { id } = req.params
+	try {
+		const stylistID = await database('stylists').where('id', id).del()
+		!id
+			? res.status(404).json({ message: 'The associated ID was not found in the system, please try again' })
+			: res.status(200).json({ success: stylistID })
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({ error: 'An error has occuried while making the request to the database, please try again.' })
+	}
+})
+
 module.exports = router
