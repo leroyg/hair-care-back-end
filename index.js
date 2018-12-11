@@ -9,10 +9,13 @@ const globalMiddleWare = require('./middleware/globalMiddleware.js')
 
 const server = express()
 <<<<<<< HEAD
+<<<<<<< HEAD
 server.use(cors())
 server.use(helmet())
 =======
 >>>>>>> development
+=======
+>>>>>>> 639210b383452c0e7426713083cb59a905ce5be6
 server.use(morgan('combined', { stream: winston.stream }))
 server.use(globalMiddleWare)
 
