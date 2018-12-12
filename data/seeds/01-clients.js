@@ -3,9 +3,9 @@ exports.seed = function(knex, Promise){
 	return knex('clients').del().then(function(){
 		// Inserts seed entries
 		return knex('clients').insert([
-			{ id: 1, first_name: 'A', last_name: 'F' },
-			{ id: 2, first_name: 'B', last_name: 'E' },
-			{ id: 3, first_name: 'C', last_name: 'D' },
+			{ first_name: 'A', last_name: 'F' },
+			{ first_name: 'B', last_name: 'E' },
+			{ first_name: 'C', last_name: 'D' },
 		])
 	})
 }
