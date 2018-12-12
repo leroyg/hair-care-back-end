@@ -1,13 +1,19 @@
 # Logs
+app.log
+/logs
 .DS_Store
 .DS_*
 logs 
 app.log 
 *.log
 *.debug
+<<<<<<< HEAD
+logs
+=======
 /logs
 app.log
 
+>>>>>>> development
 # Runtime data
 pids
 *.pid

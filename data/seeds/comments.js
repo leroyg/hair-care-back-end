@@ -5,7 +5,11 @@ exports.seed = function(knex, Promise){
 		return knex('comments').insert([
 			{ comment: 'you da best', picture_id: 2 },
 			{ comment: 'cool', picture_id: 1 },
+<<<<<<< HEAD
 			{ comment: 'k', picture_id: 3 },
+=======
+			{ comment: 'k', picture_id: 2 },
+>>>>>>> master
 		])
 	})
 }

@@ -34,14 +34,14 @@ router.get('/:id', authenticate, async (req, res) => {
 })
 
 /**
- * RESPONDS WITH ALL THE COMMENT OBJECTS THAT HAVE THE SAME STYLIST_ID (ALL COMMENTS FOR A STYLIST) 
+ * RESPONDS WITH ALL THE COMMENT OBJECTS THAT HAVE THE SAME PICTURE_ID (ALL COMMENTS FOR A PICTURE) 
  */
 
-router.get('/stylist/:id', async (req, res) => {
+router.get('/picture/:id', async (req, res) => {
 	const { id } = req.params
 	try {
-		const clients = await database.select('*').from('comments').where('stylist_id', id)
-		!id ? res.status(404).json({ message: 'That user does not exist. ' }) : res.status(200).json(clients)
+		const clients = await database.select('*').from('comments').where('picture_id', id)
+		!id ? res.status(404).json({ message: 'That picture does not exist. ' }) : res.status(200).json(clients)
 	} catch (e) {
 		console.log(e)
 		res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
@@ -53,20 +53,20 @@ router.get('/stylist/:id', async (req, res) => {
  * AND ALSO CONTAINS WHICH USERNAME THE COMMENT WAS CREATED BY, WITH TIME CREATED AND TIME UPDATED TIMESTAMPS)
  */
 
-router.post('/stylist/:id', authenticate, async (req, res) => {
+router.post('/picture/:id', authenticate, async (req, res) => {
 	const { id } = req.params
 	const { username } = req.decoded
 
 	try {
-		const getId = await database('stylists').where('id', id)
+		const getId = await database('portfolio_pictures').where('id', id)
 		if (!getId) return res.status(404).json({ message: 'Not found.' })
 		try {
 			const postIt = await database('comments').insert({
 				...req.body,
-				stylist_id : id,
+				picture_id : id,
 				comment_by : username,
 			})
-			res.status(201).json({ id: postIt, comment_by: username, stylist_id: id })
+			res.status(201).json({ id: postIt, comment_by: username, picture_id: id })
 		} catch (error) {
 			console.log(error)
 			res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
