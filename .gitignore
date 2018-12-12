@@ -1,4 +1,6 @@
 # Logs
+*.sqlite3
+*.sqlite
 app.log
 /logs
 .DS_Store
@@ -7,13 +9,9 @@ logs
 app.log 
 *.log
 *.debug
-<<<<<<< HEAD
-logs
-=======
 /logs
 app.log
 
->>>>>>> development
 # Runtime data
 pids
 *.pid
