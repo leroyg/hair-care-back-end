@@ -34,7 +34,7 @@ router.get('/:id', authenticate, async (req, res) => {
 })
 
 /**
- * RESPONDS WITH ALL THE REVIEW OBJECTS THAT HAVE THE SAME STYLIST_ID (ALL COMMENTS FOR A STYLIST) 
+ * RESPONDS WITH ALL THE REVIEW OBJECTS THAT HAVE THE SAME STYLIST_ID (ALL REVIEWS FOR A STYLIST) 
  */
 
 router.get('/stylist/:id', async (req, res) => {
@@ -86,7 +86,7 @@ router.delete('/:id', authenticate, async (req, res) => {
 	try {
 		const count = await database('reviews').where('id', id).del()
 		if (count === 0) return res.status(404).json({ message: 'ID not found.' })
-		res.status(200).json({ count, deleted: 'The comment was deleted successfully.' })
+		res.status(200).json({ count, deleted: 'The review was deleted successfully.' })
 	} catch (error) {
 		res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
 	}
