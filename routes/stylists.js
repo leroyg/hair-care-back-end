@@ -4,7 +4,12 @@ const router = express.Router()
 const { authenticate } = require('../middleware/authentication.js')
 
 router.use(express.json())
-router.get('/', async (req, res) => {
+
+/**
+ * THIS ROUTE WILL RESPOND WITH AN ARRAY OF STYLIST OBJECTS  
+ */
+
+router.get('/', authenticate, async (req, res) => {
 	try {
 		const stylists = await database('stylists')
 		res.status(200).json(stylists)
@@ -16,7 +21,11 @@ router.get('/', async (req, res) => {
 	}
 })
 
-router.get('/:id', async (req, res) => {
+/**
+ * THIS WILL RESPOND WITH ONE STYLIST OBJECT BASED ON ID
+ */
+
+router.get('/:id', authenticate, async (req, res) => {
 	const { id } = req.params
 	try {
 		const stylist = await database.select('*').from('stylists').where('id', id)
@@ -27,7 +36,11 @@ router.get('/:id', async (req, res) => {
 	}
 })
 
-router.post('/', async (req, res) => {
+/**
+ * THIS ROUTE ALLOWS DATA FROM THE STYLIST TO CREATE A NEW STYLIST OBJECT.  SEND THE INFORMATION AS AN OBJECT PASSED IN WITH THE URL TO AXIOS.  AS OF NOW THE ONLY REQUIRED KEYS ARE FIRST_NAME, LAST_NAME, CITY, STATE, ZIP AND NOT PROVIDING THEM IN THE OBJECT WILL THROW A 401.
+ */
+
+router.post('/', authenticate, async (req, res) => {
 	const { first_name, last_name, city, state, zip } = req.body
 	if (!first_name || !last_name || !city || !state || !zip) {
 		res.status(401).json({ message: 'Please provide all required fields for posting to the database.' })
@@ -45,7 +58,12 @@ router.post('/', async (req, res) => {
 	}
 })
 
-router.delete('/:id', async (req, res) => {
+/**
+ *  THIS ROUTE WILL DELETE AN ENTIRE STYLIST FROM THE DATABASE IT IS BASED ON THE STYLISTS PRIMARY KEY "ID".
+ *  THIS ID IS UNIQUE TO A STYLIST.  IF YOU WANT TO DELETE PARTS OF A STYLIST USE THE PUT ROUTE AND SEND 		EMPTY STRINGS FOR NOW...  (UNLESS REQUIRED THEN IT CANT BE DELETED UNLESS ENTIRE STYLIST IS)
+ */
+
+router.delete('/:id', authenticate, async (req, res) => {
 	const { id } = req.params
 	try {
 		const stylistID = await database('stylists').where('id', id).del()
@@ -58,7 +76,7 @@ router.delete('/:id', async (req, res) => {
 	}
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticate, async (req, res) => {
 	const bodyKeys = Object.keys(req.body)
 	if (bodyKeys.length <= 0) {
 		res.status(401).json({ errorMessage: 'Please provide field(s) to update.' })
@@ -75,5 +93,30 @@ router.put('/:id', async (req, res) => {
 		res.status(500).json({ error: 'An error has occuried while making the update request, please try again.' })
 	}
 })
+
+/**
+ *  IM PRETTY SURE THIS IS THE SAME ROUTE AS THE POST IN THE COMMENT ROUTE FILE JUST IGNORE UNTIL IM AWAKE ENOUGH TO CONFIRM LOL
+ */
+
+// router.post('/:id/comment', authenticate, async (req, res) => {
+// 	try {
+// 		const findId = await database('stylists').where('id', req.params.id)
+// 		if (findId.length === 0) {
+// 			res.status(404).json({ message: 'bad request' })
+// 		}
+// 		else {
+// 			try {
+// 				const post = await database('comments').insert({ ...req.body, stylist_id: req.params.id })
+// 				res.status(200).json(post)
+// 			} catch (error) {
+// 				console.log(error)
+// 				res.status(500).json({ error: 'An error has occuried while requesting the server.  Please try again.' })
+// 			}
+// 		}
+// 	} catch (error) {
+// 		console.log(error)
+// 		res.status(500).json({ error: 'An error has occuried while requesting the server.  Please try again.' })
+// 	}
+// })
 
 module.exports = router

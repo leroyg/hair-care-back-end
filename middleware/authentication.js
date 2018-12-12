@@ -6,17 +6,20 @@ const jwtKey = process.env.JWT_KEY
 module.exports = {
 	authenticate,
 	generateToken,
+	
 }
 
 // implementation details
 function authenticate(req, res, next){
 	const token = req.get('Authorization')
-
 	if (token) {
 		jwt.verify(token, jwtKey, (err, decoded) => {
 			if (err) return res.status(401).json(err)
+			if (err) return res.status(401).json({error: "Not authorized."})
 
 			req.decoded = decoded
+			
+			if (decoded.isStylist === 0) return res.status(422).json({message: "Unauthorized access."})
 
 			next()
 		})
@@ -32,6 +35,7 @@ function generateToken(user){
 	const payload = {
 		userId   : user.id,
 		username : user.username,
+		isStylist: user.isStylist
 	}
 	const options = {
 		expiresIn : '1h',
@@ -39,3 +43,5 @@ function generateToken(user){
 
 	return jwt.sign(payload, jwtKey, options)
 }
+
+

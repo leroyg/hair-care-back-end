@@ -1,7 +1,13 @@
 const express = require('express')
 const database = require('../startup/db.js')
 const router = express.Router()
-router.get('/', async (req, res) => {
+const { authenticate } = require('../middleware/authentication.js')
+
+/**
+ * USE IF YOU WANT TO DO ANYTHING WITH A LIST OF NON STYLIST DATA 
+ */
+
+router.get('/', authenticate, async (req, res) => {
 	try {
 		const clients = await database('clients')
 		res.status(200).json(clients)
@@ -13,7 +19,11 @@ router.get('/', async (req, res) => {
 	}
 })
 
-router.get('/:id', async (req, res) => {
+/**
+ * USE IF YOU WANT TO DO ANYTHING WITH ONE NON STYLIST OBJECT BY ID
+ */
+
+router.get('/:id', authenticate, async (req, res) => {
 	const { id } = req.params
 	try {
 		const clients = await database.select('*').from('clients').where('id', id)
@@ -23,5 +33,6 @@ router.get('/:id', async (req, res) => {
 		res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
 	}
 })
+
 
 module.exports = router
