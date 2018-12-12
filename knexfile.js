@@ -13,6 +13,5 @@ module.exports = {
 		seeds            : {
 			directory : './data/seeds',
 		},
-		debug: true,
 	},
 }

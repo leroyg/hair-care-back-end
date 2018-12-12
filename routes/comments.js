@@ -1,9 +1,7 @@
 const express = require('express')
 const database = require('../startup/db.js')
 const router = express.Router()
-const authentication = require('../middleware/authentication.js')
-
-
+const { authenticate } = require('../middleware/authentication.js')
 
 router.get('/', async (req, res) => {
 	try {
@@ -28,5 +26,28 @@ router.get('/:id', async (req, res) => {
 	}
 })
 
+router.post('/stylists/:id', authenticate, async (req, res) => {
+	const { id } = req.params
+	const { username } = req.decoded
+
+	try {
+		const getId = await database('stylists').where('id', id)
+		if (!getId) return res.status(404).json({ message: 'Not found.' })
+		try {
+			const postIt = await database('comments').insert({
+				...req.body,
+				stylist_id : id,
+				comment_by: username
+			})
+			res.status(201).json({ id: postIt, comment_by: username, stylist_id: id })
+		} catch (error) {
+			console.log(error)
+			res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
+		}
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
+	}
+})
 
 module.exports = router

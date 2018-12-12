@@ -4,11 +4,12 @@ exports.up = function(knex, Promise){
 			.primary()
 
 		table.string('comment').notNullable().defaultTo('')
-		table.integer('stylist_id').references('id').inTable('stylists').onDelete('CASCADE').index()
+		table.integer('stylist_id').notNullable().references('id').inTable('stylists').onDelete('CASCADE').index()
+		table.string('comment_by').notNullable().defaultTo('')
 		table.timestamps(true,true)
 	})
 }
 
 exports.down = function(knex, Promise){
-	return knex.schema.dropTableIfExists('comments')
+	return knex.schema.dropTable('comments')
 }
