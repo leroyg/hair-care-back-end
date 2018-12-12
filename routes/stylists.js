@@ -94,29 +94,4 @@ router.put('/:id', authenticate, async (req, res) => {
 	}
 })
 
-/**
- *  IM PRETTY SURE THIS IS THE SAME ROUTE AS THE POST IN THE COMMENT ROUTE FILE JUST IGNORE UNTIL IM AWAKE ENOUGH TO CONFIRM LOL
- */
-
-// router.post('/:id/comment', authenticate, async (req, res) => {
-// 	try {
-// 		const findId = await database('stylists').where('id', req.params.id)
-// 		if (findId.length === 0) {
-// 			res.status(404).json({ message: 'bad request' })
-// 		}
-// 		else {
-// 			try {
-// 				const post = await database('comments').insert({ ...req.body, stylist_id: req.params.id })
-// 				res.status(200).json(post)
-// 			} catch (error) {
-// 				console.log(error)
-// 				res.status(500).json({ error: 'An error has occuried while requesting the server.  Please try again.' })
-// 			}
-// 		}
-// 	} catch (error) {
-// 		console.log(error)
-// 		res.status(500).json({ error: 'An error has occuried while requesting the server.  Please try again.' })
-// 	}
-// })
-
 module.exports = router
