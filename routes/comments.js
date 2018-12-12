@@ -53,20 +53,20 @@ router.get('/picture/:id', async (req, res) => {
  * AND ALSO CONTAINS WHICH USERNAME THE COMMENT WAS CREATED BY, WITH TIME CREATED AND TIME UPDATED TIMESTAMPS)
  */
 
-router.post('/stylist/:id', authenticate, async (req, res) => {
+router.post('/picture/:id', authenticate, async (req, res) => {
 	const { id } = req.params
 	const { username } = req.decoded
 
 	try {
-		const getId = await database('stylists').where('id', id)
+		const getId = await database('portfolio_pictures').where('id', id)
 		if (!getId) return res.status(404).json({ message: 'Not found.' })
 		try {
 			const postIt = await database('comments').insert({
 				...req.body,
-				stylist_id : id,
+				picture_id : id,
 				comment_by : username,
 			})
-			res.status(201).json({ id: postIt, comment_by: username, stylist_id: id })
+			res.status(201).json({ id: postIt, comment_by: username, picture_id: id })
 		} catch (error) {
 			console.log(error)
 			res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
