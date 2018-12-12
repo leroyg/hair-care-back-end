@@ -1,6 +1,10 @@
 # Logs
 .DS_Store
 .DS_*
+logs 
+app.log 
+*.log
+*.debug
 
 # Runtime data
 pids
