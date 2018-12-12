@@ -5,7 +5,6 @@ exports.up = function(knex, Promise){
 
 		table.binary('portfolio_picture')
 		table.integer('stylist_id').notNullable().references('id').inTable('stylists').onDelete('CASCADE').index()
-		table.string('comment_id').notNullable().defaultTo('')
 		table.timestamps(true,true)
 	})
 }
