@@ -5,6 +5,8 @@ logs
 app.log 
 *.log
 *.debug
+/logs
+app.log
 
 # Runtime data
 pids
