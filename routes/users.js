@@ -13,7 +13,7 @@ const database = require('../startup/db.js')
  *  IT WILL RESPOND WITH THE ID OF THE USER AND A SUCCESS MESSAGE
  */
 
-router.use('/register', async function register(req, res){
+router.post('/register', async function register(req, res){
 	if (!req.body.username || !req.body.password) {
 		res.status(401).json({ message: 'Please provide a username and a password to register.' })
 	}
@@ -37,7 +37,7 @@ router.use('/register', async function register(req, res){
  * THIS ROUTE RESPONDS WITH A USER ID AND A JWT SIGNED ENCODED TOKEN... THE TOKEN MUST BE SENT IN THE REQUEST 	HEADERS AND CAN BE HELD IN LOCAL STORAGE FOR A USER WHICH WILL PERSIST FOR 1HOUR WHEN AT THAT POINT IT 		EXPIRES AND THE USER MUST LOG BACK IN.  YOU CAN LOG A USER OUT BY CLEARING THE TOKEN FROM LOCAL STORAGE 	AND THIS FORCES THEM TO LOG IN AGAIN AND GET A NEW TOKEN
  */
 
-router.use('/login', async function login(req, res){
+router.post('/login', async function login(req, res){
 	try {
 		const creds = req.body
 		const user = await database('users').where('username', '=', creds.username).first()
