@@ -9,7 +9,7 @@ router.use(express.json())
  * THIS ROUTE WILL RESPOND WITH AN ARRAY OF STYLIST OBJECTS  
  */
 
-router.get('/', authenticate, async (req, res) => {
+router.get('/', async (req, res) => {
 	try {
 		const stylists = await database('stylists')
 		res.status(200).json(stylists)
@@ -25,7 +25,7 @@ router.get('/', authenticate, async (req, res) => {
  * THIS WILL RESPOND WITH ONE STYLIST OBJECT BASED ON ID
  */
 
-router.get('/:id', authenticate, async (req, res) => {
+router.get('/:id', async (req, res) => {
 	const { id } = req.params
 	try {
 		const stylist = await database.select('*').from('stylists').where('id', id)

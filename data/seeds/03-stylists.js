@@ -17,6 +17,7 @@ exports.seed = function(knex, Promise){
 				average_cost        : 65,
 				social_network_site : 'instagram',
 				social_network_link : 'instagram.com',
+				profile_photo       : 'https://via.placeholder.com/300',
 			},
 			{
 				first_name          : 'first',
@@ -32,6 +33,7 @@ exports.seed = function(knex, Promise){
 				average_cost        : 39,
 				social_network_site : 'instagram',
 				social_network_link : 'instagram.com',
+				profile_photo       : 'https://via.placeholder.com/300',
 			},
 			{
 				first_name          : 'first',
@@ -47,6 +49,7 @@ exports.seed = function(knex, Promise){
 				average_cost        : 20,
 				social_network_site : 'instagram',
 				social_network_link : 'instagram.com',
+				profile_photo       : 'https://via.placeholder.com/300',
 			},
 		])
 	})
