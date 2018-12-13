@@ -10,6 +10,9 @@
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
+	"jest": {
+		"setupFiles": [ "jest-localstorage-mock" ]
+	},
 	"dependencies": {
 		"app-root-path": "^2.1.0",
 		"bcryptjs": "^2.4.3",
@@ -33,6 +36,7 @@
 	},
 	"devDependencies": {
 		"jest": "^22.2.2",
+		"jest-localstorage-mock": "^2.3.0",
 		"nodemon": "^1.18.7",
 		"supertest": "^3.0.0"
 	}
