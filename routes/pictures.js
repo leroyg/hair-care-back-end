@@ -40,7 +40,7 @@ router.get('/:id', authenticate, async (req, res) => {
 router.get('/stylist/:id', async (req, res) => {
 	const { id } = req.params
 	try {
-		const portPics = await database.select('*').from('comments').where('stylist_id', id)
+		const portPics = await database.select('*').from('portfolio_pictures').where('stylist_id', id)
 		!id ? res.status(404).json({ message: 'That user does not exist. ' }) : res.status(200).json(portPics)
 	} catch (e) {
 		console.log(e)
