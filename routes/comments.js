@@ -40,7 +40,7 @@ router.get('/:id', authenticate, async (req, res) => {
 router.get('/picture/:id', authenticate , async (req, res) => {
 	const { id } = req.params
 	try {
-		const comments = await database.select('*').from('comments').where('comments.picture_id', id).join('likes', 'comments.id', 'likes.picture_id')
+		const comments = await database.select('*').from('comments').where('comments.picture_id', id)
 		if (!id) return res.status(404).json({ message: 'That picture does not exist. ' })
 		return res.status(200).json(comments)
 	} catch (e) {
