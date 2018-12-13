@@ -6,6 +6,7 @@ const comments = require('../routes/comments.js')
 const reviews = require('../routes/reviews.js')
 const ratings = require('../routes/ratings.js')
 const pictures = require('../routes/pictures.js')
+const likes = require('../routes/likes.js')
 
 const server = express.Router()
 
@@ -16,5 +17,6 @@ server.use('/api/comments', comments)
 server.use('/api/reviews', reviews)
 server.use('/api/ratings', ratings)
 server.use('/api/pictures', pictures)
+server.use('/api/likes', likes)
 
 module.exports = server
