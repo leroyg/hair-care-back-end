@@ -3,12 +3,11 @@ const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 
-
 const server = express()
 
 const enableCors = function(req, res, next){
 	res.header('Access-Control-Allow-Origin', '*')
-	res.header('Access-Control-Allow-Methods', 'GET,POST')
+	res.header('Access-Control-Allow-Methods', 'GET,POST, PUT, DELETE')
 	res.header('Access-Control-Allow-Headers', 'Content-Type')
 
 	next()
@@ -30,6 +29,5 @@ server.use(express.json())
 server.use(enableCors)
 server.use(cors(corsOptions))
 server.use(helmet())
-
 
 module.exports = server
