@@ -37,10 +37,10 @@ router.get('/:id', authenticate, async (req, res) => {
  * RESPONDS WITH ALL THE PORTFOLIO PICTURES THAT HAVE THE SAME STYLIST_ID (THIS WILL GIVE YOU EVERY PORTFOLIO PICTURE THAT ONE STYLIST HAS ASSOCIATED WITH THEM)
  */
 
-router.get('/stylist/:id', async (req, res) => {
+router.get('/stylist/:id', authenticate, async (req, res) => {
 	const { id } = req.params
 	try {
-		const portPics = await database.select('*').from('pictures').where('stylist_id', id)
+		const portPics = await database.select('*').from('pictures').where('stylist_id', id).join('likes', 'pictures.id', 'likes.picture_id')
 		!id ? res.status(404).json({ message: 'That user does not exist. ' }) : res.status(200).json(portPics)
 	} catch (e) {
 		res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
