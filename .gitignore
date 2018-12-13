@@ -11,6 +11,7 @@ app.log
 *.debug
 /logs
 app.log
+.env
 
 # Runtime data
 pids
