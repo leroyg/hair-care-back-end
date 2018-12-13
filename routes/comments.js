@@ -59,7 +59,7 @@ router.post('/picture/:id', authenticate, async (req, res) => {
 	const { username } = req.decoded
 
 	try {
-		const getId = await database('portfolio_pictures').where('id', id)
+		const getId = await database('picture').where('id', id)
 		if (!getId) return res.status(404).json({ message: 'Not found.' })
 		try {
 			const postIt = await database('comments').insert({
