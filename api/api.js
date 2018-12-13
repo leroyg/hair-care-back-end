@@ -5,7 +5,7 @@ const users = require('../routes/users.js')
 const comments = require('../routes/comments.js')
 const reviews = require('../routes/reviews.js')
 const ratings = require('../routes/ratings.js')
-const portfolioPictures = require('../routes/portfolio_photos.js')
+const pictures = require('../routes/pictures.js')
 
 const server = express.Router()
 
@@ -15,6 +15,6 @@ server.use('/api', users)
 server.use('/api/comments', comments)
 server.use('/api/reviews', reviews)
 server.use('/api/ratings', ratings)
-server.use('/api/portfolioPictures', portfolioPictures)
+server.use('/api/pictures', pictures)
 
 module.exports = server
