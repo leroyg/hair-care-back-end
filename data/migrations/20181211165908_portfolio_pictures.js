@@ -1,9 +1,9 @@
 exports.up = function(knex, Promise){
-	return knex.schema.createTable('portfolio_pictures', table => {
+	return knex.schema.createTable('pictures', table => {
 		table.increments()
 			.primary()
 
-		table.binary('portfolio_picture')
+		table.binary('picture')
 		table.integer('stylist_id').notNullable().references('id').inTable('stylists').onDelete('CASCADE').index()
 		table.timestamps(true,true)
 	})
