@@ -9,7 +9,7 @@ const moment = require('moment')
  */
 router.get('/', authenticate, async (req, res) => {
 	try {
-		const data = await database('portfolio_pictures')
+		const data = await database('pictures')
 		res.status(200).json(data)
 	} catch (e) {
 		console.log(e)
@@ -25,7 +25,7 @@ router.get('/', authenticate, async (req, res) => {
 
 router.get('/:id', authenticate, async (req, res) => {
 	try {
-		const byId = await database('portfolio_pictures').where('id', req.params.id)
+		const byId = await database('pictures').where('id', req.params.id)
 		if (!byId) return res.status(404).json({ message: 'ID not found' })
 		res.status(200).json(byId)
 	} catch (error) {
@@ -40,7 +40,7 @@ router.get('/:id', authenticate, async (req, res) => {
 router.get('/stylist/:id', async (req, res) => {
 	const { id } = req.params
 	try {
-		const portPics = await database.select('*').from('portfolio_pictures').where('stylist_id', id)
+		const portPics = await database.select('*').from('pictures').where('stylist_id', id)
 		!id ? res.status(404).json({ message: 'That user does not exist. ' }) : res.status(200).json(portPics)
 	} catch (e) {
 		res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
@@ -59,7 +59,7 @@ router.post('/stylist/:id', authenticate, async (req, res) => {
 		const getId = await database('stylists').where('id', id)
 		if (!getId) return res.status(404).json({ message: 'Not found.' })
 		try {
-			const postIt = await database('portfolio_pictures').insert(req.body)
+			const postIt = await database('pictures').insert(req.body)
 			res.status(201).json({ postIt, getId })
 		} catch (error) {
 			console.log(error)
@@ -72,13 +72,13 @@ router.post('/stylist/:id', authenticate, async (req, res) => {
 })
 
 /**
- * THIS ROUTE DELETES ONE PHOTO BASED ON ITS PORTFOLIO_PICTURE ID.  WHEN SUCCESSFUL IT RETURNS DELETEDID: 1 AND A SUCCESS MESSAGE.  IF ID NOT FOUND, IT RESPONDS WITH 404, ALL OTHER ERRORS RESPOND WITH 500.
+ * THIS ROUTE DELETES ONE PHOTO BASED ON ITS PICTURE ID.  WHEN SUCCESSFUL IT RETURNS DELETEDID: 1 AND A SUCCESS MESSAGE.  IF ID NOT FOUND, IT RESPONDS WITH 404, ALL OTHER ERRORS RESPOND WITH 500.
  */
 
 router.delete('/:id', authenticate, async (req, res) => {
 	const { id } = req.params
 	try {
-		const count = await database('portfolio_pictures').where('id', id).del()
+		const count = await database('pictures').where('id', id).del()
 		if (count === 0) return res.status(404).json({ message: 'ID not found.' })
 		res.status(200).json({ count, deleted: 'The photo was deleted successfully.' })
 	} catch (error) {
@@ -87,7 +87,7 @@ router.delete('/:id', authenticate, async (req, res) => {
 })
 
 /**
- * THIS ALLOWS ONE PHOTO TO BE UPDATED BY ID.  SUPPLY A JSON IN THE REQUEST BODY WITH "PORTFOLIO_PICTURE" KEY
+ * THIS ALLOWS ONE PHOTO TO BE UPDATED BY ID.  SUPPLY A JSON IN THE REQUEST BODY WITH "PICTURE" KEY
  * SUCCESSFUL RESPONSE RETURNS 1:integer. 
  */
 
@@ -95,11 +95,11 @@ router.put('/:id', authenticate, async (req, res) => {
 	const { id } = req.params
 	const changes = req.body
 	try {
-		const count = await database('portfolio_pictures').where('id', id)
+		const count = await database('pictures').where('id', id)
 		if (count.length <= 0) return res.status(404).json({ message: 'ID/User not found.' })
 		try {
 			if (!req.body.comment) return res.status(400).json({ errorMessage: 'Please provide an updated photo.' })
-			const insert = await database('portfolio_pictures')
+			const insert = await database('pictures')
 				.where('id', id)
 				.update({ ...changes, updated_at: moment().format('YYYY-DD-MM HH:mm:ss') })
 			res.status(200).json({ insert, success: 'Success!' })
