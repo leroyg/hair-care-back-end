@@ -13,8 +13,8 @@ exports.seed = function(knex, Promise){
 				user_id    : 1,
 			},
 			{
-				first_name : 'Ben',
-				last_name  : 'Benson',
+				first_name : 'Brian',
+				last_name  : 'Brianson',
 				address    : '120 W 44th Street',
 				city       : 'New York',
 				state      : 'NY',

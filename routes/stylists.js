@@ -13,7 +13,6 @@ router.use(express.json())
 router.get('/', async (req, res) => {
 	try {
 		const stylists = await database('stylists')
-		console.log('stylists', stylists);
 		for (let i = 0; i < stylists.length; i++) {
 			stylists[i].profile_photo = stylists[i].profile_photo.toString('utf8')
 		}
@@ -34,7 +33,6 @@ router.get('/:id', async (req, res) => {
 	const { id } = req.params
 	try {
 		const stylist = await database.select('*').from('stylists').where('id', id)
-		console.log('stylist', stylist);
 		for (let i = 0; i < stylist.length; i++) {
 			stylist[i].profile_photo = stylist[i].profile_photo.toString('utf8')
 		}
