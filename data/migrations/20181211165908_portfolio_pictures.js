@@ -5,7 +5,7 @@ exports.up = function(knex, Promise){
 
 		table.binary('picture')
 		table.integer('user_id').notNullable().references('id').inTable('users').onDelete('CASCADE').index()
-		table.timestamp('created_at').defaultTo(knex.fn.now());
+		table.string('created_at').defaultTo(knex.fn.now());
 	})
 }
 
