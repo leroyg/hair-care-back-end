@@ -31,6 +31,8 @@
     DELETE: res = 0 (unsuccessful) or 1(successful) ; req = send 
 
   + `api/comments/picture/:id`
+
+
   + `api/pictures`
   + `api/pictures/:id`
   + `api/pictures/stylist/:id`

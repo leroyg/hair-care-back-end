@@ -5,7 +5,7 @@ exports.up = function(knex, Promise){
 		table.string('comment').notNullable().defaultTo('')
 		table.string('comment_by').notNullable().defaultTo('')
 		table.integer('picture_id').notNullable().references('id').inTable('portfolio_pictures').onDelete('CASCADE').index()
-		table.timestamps(true, true)
+		table.timestamps(true, false)
 	})
 }
 
