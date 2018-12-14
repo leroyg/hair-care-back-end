@@ -12,8 +12,9 @@ router.get('/', authenticate, async (req, res) => {
 		const data = await database('pictures')
 		.join('users', 'pictures.user_id', '=', 'users.id')
 		.select('pictures.id', 'pictures.picture', 'pictures.created_at', 'users.username')
-		data[0].picture = data[0].picture.toString('utf8')
-		console.log(data)
+		for (let i = 0; i < data.length; i++) {
+			data[i].picture = data[i].picture.toString('utf8')
+		}
 		res.status(200).json(data)
 	} catch (e) {
 		console.log(e)
@@ -31,6 +32,7 @@ router.get('/:id', authenticate, async (req, res) => {
 	try {
 		const byId = await database('pictures').where('id', req.params.id)
 		if (!byId) return res.status(404).json({ message: 'ID not found' })
+		console.log('byId', byId)
 		res.status(200).json(byId)
 	} catch (error) {
 		res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
@@ -46,6 +48,7 @@ router.get('/stylist/:id', authenticate, async (req, res) => {
 	try {
 		const portPics = await database.select('*').from('pictures').where('user_id', id)
 		!id ? res.status(404).json({ message: 'That user does not exist. ' }) : res.status(200).json(portPics)
+		console.log('portPics', portPics)
 	} catch (e) {
 		res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
 	}
