@@ -12,6 +12,7 @@ router.get('/', authenticate, async (req, res) => {
 		const data = await database('pictures')
 		.join('users', 'pictures.user_id', '=', 'users.id')
 		.select('pictures.id', 'pictures.picture', 'pictures.created_at', 'users.username')
+		console.log('THE DATA', data);
 		res.status(200).json(data)
 	} catch (e) {
 		console.log(e)
