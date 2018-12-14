@@ -73,9 +73,9 @@ router.post('/stylist/:id', authenticate, async (req, res) => {
 		})
 		if (!getId) return res.status(404).json({ message: 'Not found.' })
 		try {
-			await database('pictures').insert(req.body)
+			await database('pictures').insert(req.body).returning('id')
 			.then(function (result) {
-				console.log('result', result[0])
+				console.log('result', result)
 			})
 			// const newPicID = postIt[0];
 			// console.log('postIt', postIt)
