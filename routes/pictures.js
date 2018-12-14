@@ -63,22 +63,26 @@ router.get('/stylist/:id', authenticate, async (req, res) => {
 
 router.post('/stylist/:id', authenticate, async (req, res) => {
 	const { id } = req.params
+	let getId
 	let newPicID
 
 	try {
-		const getId = await database('stylists').where('user_id', id)
+		await database('stylists').where('user_id', id)
 		.then(function (result) {
-			newPicID = result;
+			getId = result[0];
 		})
-		// if (!getId) return res.status(404).json({ message: 'Not found.' })
+		if (!getId) return res.status(404).json({ message: 'Not found.' })
 		try {
-			const postIt = await database('pictures').insert(req.body)
+			await database('pictures').insert(req.body)
+			.then(function (picResult) {
+				console.log('picResult', picResult)
+			})
 			// const newPicID = postIt[0];
-			console.log('postIt', postIt)
+			// console.log('postIt', postIt)
 			console.log('newPicID', newPicID)
-			const newPic = { likes: 0, picture_id: newPicID };
-			await database('likes').insert(newPic);
-			res.status(201).json({ postIt, getId })
+			// const newPic = { likes: 0, picture_id: newPicID };
+			// await database('likes').insert(newPic);
+			res.status(201).json({ getId })
 		} catch (error) {
 			console.log(error)
 			res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
