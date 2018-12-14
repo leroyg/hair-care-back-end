@@ -1,6 +1,4 @@
 # Logs
-*.sqlite3
-*.sqlite
 app.log
 /logs
 .DS_Store
@@ -9,10 +7,7 @@ logs
 app.log 
 *.log
 *.debug
-/logs
-app.log
-.env
-
+logs
 # Runtime data
 pids
 *.pid
@@ -71,4 +66,7 @@ typings/
 .env
 .DS_Store
 
-.vscode/
+
+.sqlite3
+.sqlite
+.env
