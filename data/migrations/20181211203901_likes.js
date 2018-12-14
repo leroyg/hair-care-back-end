@@ -3,7 +3,7 @@ exports.up = function(knex, Promise){
 		table.increments().primary()
 
 		table.integer('likes').unsigned().notNullable().defaultTo(0)
-		table.integer('picture_id').notNullable().references('id').inTable('portfolio_pictures').onDelete('CASCADE').index()
+		table.integer('picture_id').notNullable().references('id').inTable('pictures').onDelete('CASCADE').index()
 	})
 }
 
