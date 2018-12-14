@@ -60,6 +60,9 @@ router.post('/stylist/:id', authenticate, async (req, res) => {
 		if (!getId) return res.status(404).json({ message: 'Not found.' })
 		try {
 			const postIt = await database('pictures').insert(req.body)
+			const newPicID = postIt[0];
+			const newPic = { likes: 0, picture_id: newPicID };
+			await database('likes').insert(newPic);
 			res.status(201).json({ postIt, getId })
 		} catch (error) {
 			console.log(error)
