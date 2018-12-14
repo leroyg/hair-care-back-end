@@ -70,6 +70,7 @@ router.post('/stylist/:id', authenticate, async (req, res) => {
 		try {
 			const postIt = await database('pictures').insert(req.body)
 			const newPicID = postIt[0];
+			console.log('newPicID', newPicID)
 			const newPic = { likes: 0, picture_id: newPicID };
 			await database('likes').insert(newPic);
 			res.status(201).json({ postIt, getId })
