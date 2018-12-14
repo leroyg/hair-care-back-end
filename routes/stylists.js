@@ -35,6 +35,9 @@ router.get('/:id', async (req, res) => {
 	try {
 		const stylist = await database.select('*').from('stylists').where('id', id)
 		console.log('stylist', stylist);
+		for (let i = 0; i < stylist.length; i++) {
+			stylist[i].profile_photo = stylist[i].profile_photo.toString('utf8')
+		}
 		!id ? res.status(404).json({ message: 'That user does not exist. ' }) : res.status(200).json(stylist)
 	} catch (e) {
 		console.log(e)
