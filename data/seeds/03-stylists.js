@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise){
 				state         : 'CA',
 				zip           : 94588,
 				profile_photo : 'https://via.placeholder.com/300',
-				user_id       : 0,
+				user_id       : 1,
 			},
 			{
 				first_name    : 'first',
@@ -21,7 +21,7 @@ exports.seed = function(knex, Promise){
 				state         : 'NY',
 				zip           : 10036,
 				profile_photo : 'https://via.placeholder.com/300',
-				user_id       : 1,
+				user_id       : 2,
 			},
 			{
 				first_name    : 'first',
@@ -31,7 +31,7 @@ exports.seed = function(knex, Promise){
 				state         : 'MO',
 				zip           : 64111,
 				profile_photo : 'https://via.placeholder.com/300',
-				user_id       : 2,
+				user_id       : 3,
 			},
 		])
 	})

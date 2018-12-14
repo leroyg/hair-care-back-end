@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
  * THIS ROUTE ALLOWS DATA FROM THE STYLIST TO CREATE A NEW STYLIST OBJECT.  SEND THE INFORMATION AS AN OBJECT PASSED IN WITH THE URL TO AXIOS.  AS OF NOW THE ONLY REQUIRED KEYS ARE FIRST_NAME, LAST_NAME, CITY, STATE, ZIP AND NOT PROVIDING THEM IN THE OBJECT WILL THROW A 401.
  */
 
-router.post('/', authenticate, async (req, res) => {
+router.post('/:id', authenticate, async (req, res) => {
 	const { first_name, last_name, city, state, zip } = req.body
 	if (!first_name || !last_name || !city || !state || !zip) {
 		res.status(401).json({ message: 'Please provide all required fields for posting to the database.' })
