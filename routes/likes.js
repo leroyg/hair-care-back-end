@@ -53,9 +53,9 @@ router.get('/picture/:id', async (req, res) => {
  * AND ALSO CONTAINS WHICH USERNAME THE COMMENT WAS CREATED BY, WITH TIME CREATED AND TIME UPDATED TIMESTAMPS)
  */
 
-router.post('/picture/:id', async (req, res) => {
+router.post('/:id', async (req, res) => {
 	const { id } = req.params
-	const { username } = req.decoded
+
 
 	try {
 		const getId = await database('likes').where('id', id)
@@ -97,17 +97,16 @@ router.delete('/:id', authenticate, async (req, res) => {
 router.put('/:id', async (req, res) => {
 	const { id } = req.params
 	const changes = req.body
-	const { username } = req.decoded.username
 	try {
 		const count = await database('likes').where('id', id)
 		if (count.length <= 0 && count.comment_by !== username)
 			return res.status(404).json({ message: 'ID/User not found.' })
 		try {
-			if (!req.body.comment) return res.status(400).json({ errorMessage: 'Please provide an updated comment.' })
-			const insert = await database('likes')
+			if (!req.body.likes) return res.status(400).json({ errorMessage: 'Please provide an updated comment.' })
+			const new_likes = await database('likes')
 				.where('id', id)
-				.update({ ...changes, updated_at: moment().format('YYYY-DD-MM HH:mm:ss') })
-			res.status(200).json({ insert, success: 'Success!' })
+				.update(changes)
+			res.status(200).json({success: 'Likes were updated!' })
 		} catch (error) {
 			res.status(500).json({ error: 'An unexpected error has occuried.  Please try again.' })
 		}
