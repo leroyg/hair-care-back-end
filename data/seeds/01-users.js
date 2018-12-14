@@ -3,9 +3,9 @@ exports.seed = function(knex, Promise){
 	return knex('users').truncate().then(function(){
 		// Inserts seed entries
 		return knex('users').insert([
-			{ username: 'myusernamdfde', password: 'apass', isStylist: true },
-			{ username: 'myusesdfsdrname', password: 'apass', isStylist: false },
-			{ username: 'myusernsssame', password: 'apass', isStylist: false },
+			{ username: 'Alan', password: 'apass', isStylist: true },
+			{ username: 'Ben', password: 'apass', isStylist: false },
+			{ username: 'Chris', password: 'apass', isStylist: false },
 		])
 	})
 }
