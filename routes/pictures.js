@@ -47,7 +47,7 @@ router.get('/stylist/:id', authenticate, async (req, res) => {
 	const { id } = req.params
 	try {
 		const portPics = await database.select('*').from('pictures').where('user_id', id)
-		for (let i = 0; i < data.length; i++) {
+		for (let i = 0; i < portPics.length; i++) {
 			portPics[i].picture = portPics[i].picture.toString('utf8')
 		}
 		!id ? res.status(404).json({ message: 'That user does not exist. ' }) : res.status(200).json(portPics)
