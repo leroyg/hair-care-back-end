@@ -42,7 +42,8 @@ router.get('/:id', async (req, res) => {
 
 router.post('/:id', authenticate, async (req, res) => {
 	const id = req.params.id;
-	const info = req.body
+	const info = req.body;
+	const { first_name, last_name, city, state, zip } = req.body;
 	info['user_id'] = id;
 	if (!first_name || !last_name || !city || !state || !zip) {
 		res.status(401).json({ message: 'Please provide all required fields for posting to the database.' })
