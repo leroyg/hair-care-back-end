@@ -4,18 +4,12 @@ exports.up = function(knex, Promise){
 
 		table.string('first_name', 128).notNullable().defaultTo("")
 		table.string('last_name', 128).notNullable().defaultTo("")
-		table.string('phone_number', 15).unique()
-		table.string('address')
+		table.string('address').notNullable()
 		table.string('city').notNullable().defaultTo("")
 		table.string('state').notNullable().defaultTo("")
 		table.integer('zip').unsigned().notNullable().defaultTo(5)
-		table.integer('rating').unsigned()
-		table.string('services')
-		table.string('specialty', 128)
-		table.integer('average_cost').unsigned()
-		table.string('social_network_link', 128)
-		table.string('social_network_site', 128)
 		table.binary('profile_photo')
+		table.integer('user_id').notNullable().unique().references('id').inTable('users').onDelete('CASCADE').index()
 	})
 }
 

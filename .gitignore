@@ -1,5 +1,6 @@
 # Logs
 *.sqlite3
+data
 *.sqlite
 app.log
 /logs
