@@ -4,7 +4,7 @@ exports.up = function(knex, Promise){
 			.primary()
 
 		table.binary('picture')
-		table.integer('stylist_id').notNullable().references('id').inTable('stylists').onDelete('CASCADE').index()
+		table.integer('user_id').notNullable().references('id').inTable('users').onDelete('CASCADE').index()
 		table.timestamps(true,false)
 	})
 }
