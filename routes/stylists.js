@@ -3,6 +3,7 @@ const database = require('../startup/db.js')
 const router = express.Router()
 const { authenticate } = require('../middleware/authentication.js')
 
+
 router.use(express.json())
 
 /**
