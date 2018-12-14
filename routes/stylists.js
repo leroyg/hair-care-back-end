@@ -13,6 +13,7 @@ router.use(express.json())
 router.get('/', async (req, res) => {
 	try {
 		const stylists = await database('stylists')
+		console.log('stylists', stylists);
 		res.status(200).json(stylists)
 	} catch (e) {
 		console.log(e)
