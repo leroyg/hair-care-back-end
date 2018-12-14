@@ -3,20 +3,35 @@
 ## API Structure and Endpoints
 
 + [ ] Build a CRUD API using Node and Express
+  The following endpoints can be grouped into these major categories.  Where necessary; headers, request bodies, and responses are indicated.
   
-+ [ ] The following endpoints are to be built:
-
-+ [ ] GET `/api/stylists` *this endpoint responds with an array of stylist objects containing various stylist info properties, stylist and user access.*
-
-+ [ ] GET `/api/stylist:id` *this endpoint responds with a single stylist object and contains info as properties, stylist and user access*
+  + `api/clients`
   
-+ [ ] POST `/api/stylists` *this endpoint accepts an object of stylist information and responds with the a newly created `[stylist_id]`. Stylist access ONLY*
+    GET: res = all clients; {first_name: string, last_name: string}
+
+  + `api/clients/:id`
+  + 
+    GET: res = one client, {first_name: string, last_name: string}
+
+  + `api/stylists`
   
-+ [ ] PUT `/api/stylist/:id` *this endpoint allows allows a request sent with an object of modifications and responds with `[1]` (the number of objects modified) if successful. Stylist access only*
+    GET: res = all stylists, {first_name: string, last_name:string, phone_number:string, address:string, city:string, state:string, zip number, rating:string, services:string, specialty:string, average_cost, number, social_network_site:string, social_network_link:string, profile_photo: string},
 
-+ [ ] POST `/api/login` *this endpoint will require a request with username and password and if authenticated will allow access to all the protected routes above, if successful it will respond with the user_id and JWT Token, Stylist access only*
-
-+ [ ] DELETE `/api/stylist/:id` *this endpoint accepts an existing id and responds with [1] (the number of objects deleted) if successful* Stylist access ONLY`
+  + `api/stylists/:id`
+  + `api/comments`
+  + `api/comments/:id`
+  + `api/comments/picture/:id`
+  + `api/pictures`
+  + `api/pictures/:id`
+  + `api/pictures/stylist/:id`
+  + `api/ratings`
+  + `api/ratings/:id`
+  + `api/ratings/stylist/:id`
+  + `api/likes`
+  + `api/likes/:id`
+  + `api/likes/picture/:id`
+  + `api/register`
+  + `api/login`
 
 ## Database & Schema Architecture
 
