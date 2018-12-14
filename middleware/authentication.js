@@ -18,8 +18,6 @@ function authenticate(req, res, next){
 			if (err) return res.status(401).json({error: "Not authorized."})
 
 			req.decoded = decoded
-			
-			if (decoded.isStylist === 0) return res.status(422).json({message: "Unauthorized access."})
 
 			next()
 		})
