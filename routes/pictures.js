@@ -63,13 +63,17 @@ router.get('/stylist/:id', authenticate, async (req, res) => {
 
 router.post('/stylist/:id', authenticate, async (req, res) => {
 	const { id } = req.params
+	let newPicID
 
 	try {
 		const getId = await database('stylists').where('user_id', id)
+		.then(function (id) {
+			newPicID = id;
+		})
 		if (!getId) return res.status(404).json({ message: 'Not found.' })
 		try {
 			const postIt = await database('pictures').insert(req.body)
-			const newPicID = postIt[0];
+			// const newPicID = postIt[0];
 			console.log('postIt', postIt)
 			console.log('newPicID', newPicID)
 			const newPic = { likes: 0, picture_id: newPicID };
