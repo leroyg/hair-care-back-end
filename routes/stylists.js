@@ -41,13 +41,15 @@ router.get('/:id', async (req, res) => {
  */
 
 router.post('/:id', authenticate, async (req, res) => {
-	const { first_name, last_name, city, state, zip } = req.body
+	const id = req.params.id;
+	const info = req.body
+	info['user_id'] = id;
 	if (!first_name || !last_name || !city || !state || !zip) {
 		res.status(401).json({ message: 'Please provide all required fields for posting to the database.' })
 	}
 	else {
 		try {
-			const newStylist = await database('stylists').insert(req.body)
+			const newStylist = await database('stylists').insert(info)
 			res.status(201).json(newStylist)
 		} catch (error) {
 			console.log(error)
