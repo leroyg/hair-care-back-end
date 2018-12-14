@@ -14,6 +14,9 @@ router.get('/', async (req, res) => {
 	try {
 		const stylists = await database('stylists')
 		console.log('stylists', stylists);
+		for (let i = 0; i < stylists.length; i++) {
+			stylists[i].profile_photo = stylists[i].profile_photo.toString('utf8')
+		}
 		res.status(200).json(stylists)
 	} catch (e) {
 		console.log(e)
