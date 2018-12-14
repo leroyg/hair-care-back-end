@@ -32,6 +32,8 @@
 
   + `api/comments/picture/:id`
 
+    GET: res: all comments per picture, req: send id
+
 
   + `api/pictures`
   + `api/pictures/:id`
