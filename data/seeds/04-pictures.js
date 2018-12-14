@@ -34,7 +34,6 @@ exports.seed = function(knex, Promise){
 			{ picture: 'https://loremflickr.com/320/240/haircut', stylist_id: 3 },
 			{ picture: 'https://loremflickr.com/320/240/haircut', stylist_id: 1 },
 			{ picture: 'https://loremflickr.com/320/240/haircut', stylist_id: 1 },
-			
 		])
 	})
 }
