@@ -28,24 +28,50 @@
   + `api/comments/:id`
 
     GET: res = one comment, {comments: string}
-    DELETE: res = 0 (unsuccessful) or 1(successful) ; req = send 
+    DELETE: res = 0 (unsuccessful) or 1(successful) ; req = send
+    PUT: res = 0(unsuccessful) or 1(successful) ; req = {comment: string}
 
   + `api/comments/picture/:id`
 
     GET: res: all comments per picture, req: send id
-
+    POST: res: 0 (unsuccessful) or 1 (successful), req: {comment: string}
 
   + `api/pictures`
+
+    GET: res = all pictures, {picture: string, user_id: string}
+
   + `api/pictures/:id`
+
+    GET: res = one picture, {picture: string, user_id: string}
+    DELETE: res = 0 (unsuccessful) or 1(successful) ; req = send
+    PUT: res = 0(unsuccessful) or 1(successful) ; {picture: string}
+
   + `api/pictures/stylist/:id`
-  + `api/ratings`
-  + `api/ratings/:id`
-  + `api/ratings/stylist/:id`
+
+    GET: res: all pictures per stylist, req: send id
+    POST: res: 0 (unsuccessful) or 1 (successful), req: {picture_: string}
+
   + `api/likes`
+
+    GET: res = all likes, {likes: string}
+
   + `api/likes/:id`
+  
+    GET: res = one likes, {likes: string}
+    PUT: res = 0(unsuccessful) or 1(successful) ; req = {likes: string}
+
   + `api/likes/picture/:id`
+
+    GET: res: all likes per picture, req: send id
+    POST: res: 0 (unsuccessful) or 1 (successful), req: {likes: string}
+
   + `api/register`
+
+    POST: res: provides user_id and success message, req: {username: string, password: string, isStylist: boolean}
+
   + `api/login`
+
+    POST: res: provides user_id and JWT signed token, req: {username: string, password: string}
 
 ## Database & Schema Architecture
 
@@ -59,32 +85,6 @@
 + [ ] A normalized data model is established and persists application data
 
 + [ ] The database contains a stylists table structured with the following schema:
-  
-            1. "stylist"
-                "id": Integer, unsigned, required, primary key, autoincremented
-                "firstname": String, required, 128 char max
-                "lastname": String, required, 128 char max
-                "rating": Integer, unsigned, range of 1-5
-                "username": String, unique, 128 char max
-                "password": String, 128 char max
-
-            2. "work"
-                "stylist_id": foreign key, 1 to many (1 stylist in theory could work at multiple locations, or work at home and a salon,etc.), required, unique, references stylist table
-                "address": String, required, unique, 256 char max
-                "phone": String, required, unique, 14 char max to account for 1-800-000-0000 style numbers
-                "email": String, unique, 128 char max
-
-            3.  "user"
-                "id": Integer, unsigned, required, primary key, autoincremented
-                "username": String, unique, 128 char max
-                "password": String, 128 char max
-
-            4.  "social"
-                 "stylist_id": foreign key, 1 to many (1 stylist can be associated with many comments, replies, and likes), required, unique, references stylist table
-                 "user_id": foreign key, 1 to many, required, unique, references user table
-                 "comment": String, 255 char max
-                 "reply": String, 255 char max
-                 "like": Boolean, True if "Liked"
 
 ## Authentication
 
