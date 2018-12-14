@@ -12,7 +12,9 @@ router.get('/', authenticate, async (req, res) => {
 		const data = await database('pictures')
 		.join('users', 'pictures.user_id', '=', 'users.id')
 		.select('pictures.id', 'pictures.picture', 'pictures.created_at', 'users.username')
-		res.status(200).json(data.decode('utf-16le'))
+		data.picture = str(data.picture).decode('utf-16le')
+		console.log(data)
+		res.status(200).json(data)
 	} catch (e) {
 		console.log(e)
 		res
