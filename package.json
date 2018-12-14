@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "jest --watchAll --verbose",
+		"test": "jest --verbose --watchAll",
 		"start": "nodemon"
 	},
 	"keywords": [],
@@ -19,6 +19,7 @@
 		"express": "^4.16.2",
 		"express-async-errors": "^2.1.0",
 		"fawn": "^2.1.5",
+		"fsevents": "^2.0.1",
 		"helmet": "^3.15.0",
 		"joi": "^13.1.0",
 		"joi-objectid": "^2.0.0",
