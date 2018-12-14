@@ -9,7 +9,9 @@ const moment = require('moment')
  */
 router.get('/', authenticate, async (req, res) => {
 	try {
-		const data = await database('pictures').select('pictures.id', 'pictures.picture', 'pictures.created_at', 'users.username').join('users', 'users.id', '=', 'pictures.user_id')
+		const data = await database('pictures')
+		.join('users', 'pictures.user_id', '=', 'users.id')
+		.select('pictures.id', 'pictures.picture', 'pictures.created_at', 'users.username')
 		res.status(200).json(data)
 	} catch (e) {
 		console.log(e)
