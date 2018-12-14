@@ -75,13 +75,14 @@ router.post('/stylist/:id', authenticate, async (req, res) => {
 		try {
 			await database('pictures').insert(req.body).returning('id')
 			.then(function (result) {
+				newPicID = result[0];
 				console.log('result', result)
 			})
 			// const newPicID = postIt[0];
 			// console.log('postIt', postIt)
 			console.log('newPicID', newPicID)
-			// const newPic = { likes: 0, picture_id: newPicID };
-			// await database('likes').insert(newPic);
+			const newPic = { likes: 0, picture_id: newPicID };
+			await database('likes').insert(newPic);
 			res.status(201).json({ getId })
 		} catch (error) {
 			console.log(error)
