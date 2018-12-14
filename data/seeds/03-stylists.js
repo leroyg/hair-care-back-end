@@ -4,7 +4,7 @@ exports.seed = function(knex, Promise){
 		// Inserts seed entries
 		return knex('stylists').insert([
 			{
-				first_name : 'Alan',
+				first_name : 'BOT #1',
 				last_name  : 'Alenson',
 				address    : '5820 Stoneridge Mall RD',
 				city       : 'Pleasanton',
@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise){
 				user_id    : 1,
 			},
 			{
-				first_name : 'Brian',
+				first_name : 'BOT #2',
 				last_name  : 'Brianson',
 				address    : '120 W 44th Street',
 				city       : 'New York',
@@ -22,7 +22,7 @@ exports.seed = function(knex, Promise){
 				user_id    : 2,
 			},
 			{
-				first_name : 'Chris',
+				first_name : 'BOT #3',
 				last_name  : 'Chrison',
 				address    : '3255 Main St',
 				city       : 'Kansas City',
