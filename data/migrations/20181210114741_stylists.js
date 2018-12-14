@@ -8,7 +8,7 @@ exports.up = function(knex, Promise){
 		table.string('city').notNullable().defaultTo('')
 		table.string('state').notNullable().defaultTo('')
 		table.integer('zip').unsigned().notNullable().defaultTo(5)
-		table.binary('profile_photo').defaultTo('https://via.placeholder.com/300')
+		table.binary('profile_photo').defaultTo('https://i.ibb.co/FBQXmjV/Missing-avatar-svg.png')
 		table.integer('user_id').notNullable().references('id').inTable('users').onDelete('CASCADE').index()
 	})
 }
