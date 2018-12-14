@@ -18,8 +18,18 @@
     GET: res = all stylists, {first_name: string, last_name:string, phone_number:string, address:string, city:string, state:string, zip number, rating:string, services:string, specialty:string, average_cost, number, social_network_site:string, social_network_link:string, profile_photo: string},
 
   + `api/stylists/:id`
+
+    GET: res = one stylist, object has the same structure has the object returned by the preceding route.
+
   + `api/comments`
+
+    GET: res = all comments, {comments: string}
+
   + `api/comments/:id`
+
+    GET: res = one comment, {comments: string}
+    DELETE: res = 0 (unsuccessful) or 1(successful) ; req = send 
+
   + `api/comments/picture/:id`
   + `api/pictures`
   + `api/pictures/:id`

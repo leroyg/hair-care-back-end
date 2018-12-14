@@ -38,7 +38,7 @@ function generateToken(user){
 		isStylist: user.isStylist
 	}
 	const options = {
-		expiresIn : '1h',
+		expiresIn : '24h',
 	}
 
 	return jwt.sign(payload, jwtKey, options)
