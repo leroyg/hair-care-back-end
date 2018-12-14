@@ -34,6 +34,7 @@ router.get('/:id', async (req, res) => {
 	const { id } = req.params
 	try {
 		const stylist = await database.select('*').from('stylists').where('id', id)
+		console.log('stylist', stylist);
 		!id ? res.status(404).json({ message: 'That user does not exist. ' }) : res.status(200).json(stylist)
 	} catch (e) {
 		console.log(e)

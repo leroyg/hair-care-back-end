@@ -67,6 +67,6 @@ typings/
 .DS_Store
 
 
-.sqlite3
-.sqlite
+*.sqlite3
+*.sqlite
 .env
